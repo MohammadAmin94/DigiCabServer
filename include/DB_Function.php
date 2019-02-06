@@ -403,8 +403,9 @@ LIMIT 0 , 5");
      * returns all rates
      */
     public function getDriverRate($did){
-        $stmt=$this->conn->prepare("SELECT Rate FROM trips WHERE DriverID = ?");
-        $stmt->bind_param("i" ,$did);
+        $status="Finished";
+        $stmt=$this->conn->prepare("SELECT Rate FROM trips WHERE DriverID = ? AND Status = ?");
+        $stmt->bind_param("is" ,$did,$status);
         $stmt->execute();
         $trips=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
@@ -551,6 +552,11 @@ WHERE trips.PassengerID = ? AND trips.DriverID IS NOT NULL ");
         return $status;
     }
 
+
+    /**
+     * save favorite location
+     * returns favLoc detail
+     */
     public function setFavAddress($pid,$name,$favLat,$favLng,$favAdr){
         $randomId=rand(1,9999999);
         $stmt = $this->conn->prepare("INSERT INTO fav_adr(FavID, PassengerID, Name, FavLat, FavLng, FavAdrDetail) VALUES(?, ?, ?, ?, ?, ?)");
@@ -573,6 +579,9 @@ WHERE trips.PassengerID = ? AND trips.DriverID IS NOT NULL ");
     }
 
 
+    /**
+     * returns favLoc detail
+     */
     public function getFavAddress($pid){
         $stmt = $this->conn->prepare("SELECT * FROM fav_adr WHERE PassengerID= ?");
         $stmt->bind_param("i",$pid);
@@ -583,6 +592,10 @@ WHERE trips.PassengerID = ? AND trips.DriverID IS NOT NULL ");
 
     }
 
+    /**
+     * delete favorite location
+     * returns favLoc detail
+     */
     public function deleteFavAddress($fid){
         $stmt = $this->conn->prepare("DELETE FROM fav_adr WHERE FavID= ?");
         $stmt->bind_param("i",$fid);
@@ -594,7 +607,30 @@ WHERE trips.PassengerID = ? AND trips.DriverID IS NOT NULL ");
         }else{
             return false;
         }
+    }
+
+    /**
+     * find out when user cancel the trip
+     */
+    public function getSituationCacnelByPassenger($tid,$did){
+        $stmt = $this->conn->prepare("SELECT Status FROM trips WHERE TripID= ? AND  DriverID= ?");
+        $stmt->bind_param("ii",$tid,$did);
+        $stmt->execute();
+        $getFav = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $getFav;
+    }
 
 
+    /**
+     * find out when user cancel the trip
+     */
+    public function getSituationCacnelByDriver($tid,$pid){
+        $stmt = $this->conn->prepare("SELECT Status FROM trips WHERE TripID= ? AND  PassengerID= ?");
+        $stmt->bind_param("ii",$tid,$pid);
+        $stmt->execute();
+        $getFav = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $getFav;
     }
 }

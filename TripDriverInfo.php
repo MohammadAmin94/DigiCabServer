@@ -8,7 +8,8 @@ $response = array("error" => FALSE);
 if(isset($_REQUEST['TripID'])) {
     $tid = $_REQUEST['TripID'];
     $detect=$db->detectDriverByUser($tid);
-    if($detect){
+
+    if(!is_null($detect['DriverID'])){
         $did=$detect['DriverID'];
         $driverRate=$db->getDriverRate($did);
         if ($driverRate){
@@ -16,8 +17,10 @@ if(isset($_REQUEST['TripID'])) {
             $i=0;
             $rate =0;
             while (isset($driverRate[$i])){
-                $rate+=$driverRate[$i]['Rate'];
-                $i++;
+                if ($driverRate[$i]['Rate']!=null){
+                    $i++;
+                    $rate+=$driverRate[$i]['Rate'];
+                }
             }
             $avgRate=$rate/$i;
             $response['AvgRate']=$avgRate;
