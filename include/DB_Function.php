@@ -28,8 +28,9 @@ class DB_Functions
     {
         $randomId=rand(1,9999999);
         $verify="Yes";
+        $pass=md5($password);
         $stmt = $this->conn->prepare("INSERT INTO passenger(PassengerID, Name, Phone, Email, Password, Verified) VALUES(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssss", $randomId, $name, $phone, $email, $password, $verify);
+        $stmt->bind_param("isssss", $randomId, $name, $phone, $email, $pass, $verify);
         $result = $stmt->execute();
         $stmt->close();
 
@@ -85,10 +86,11 @@ class DB_Functions
             $user = $stmt->get_result()->fetch_assoc();
             $stmt->close();
 
+            $p=md5($password);
             // verifying user password
             $pass = $user['Password'];
             // check for password equality
-            if ($password == $pass) {
+            if ($p == $pass) {
                 // user authentication details are correct
                 return $user;
             }
@@ -106,8 +108,9 @@ class DB_Functions
     {
         $randomId=rand(1,9999999);
         $verify="Yes";
+        $pass=md5($password);
         $stmt = $this->conn->prepare("INSERT INTO driver(DriverID, Name, Phone, Email, Password, Verified) VALUES(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssss", $randomId, $name, $phone, $email, $password, $verify);
+        $stmt->bind_param("isssss", $randomId, $name, $phone, $email, $pass, $verify);
         $result = $stmt->execute();
         $stmt->close();
 
@@ -163,10 +166,11 @@ class DB_Functions
             $driver = $stmt->get_result()->fetch_assoc();
             $stmt->close();
 
+            $p=md5($password);
             // verifying user password
             $pass = $driver['Password'];
             // check for password equality
-            if ($password == $pass) {
+            if ($p == $pass) {
                 // user authentication details are correct
                 return $driver;
             }
@@ -422,7 +426,7 @@ LIMIT 0 , 5");
     {
         //$status='Finished';
         $stmt = $this->conn->prepare("SELECT 
-trips.BegAdr,trips.DestAdr,trips.StartTime,trips.EndTime,trips.Price,trips.Status,trips.Rate,driver.Name,driver.Phone,car.Model,car.Color,car.Plate 
+trips.TripID,trips.BegAdr,trips.DestAdr,trips.StartTime,trips.EndTime,trips.Price,trips.Status,trips.Rate,driver.Name,driver.Phone,car.Model,car.Color,car.Plate 
 FROM trips INNER JOIN driver ON trips.DriverID=driver.DriverID 
 INNER JOIN car ON driver.DriverID = car.DriverID 
 WHERE trips.PassengerID = ? AND trips.DriverID IS NOT NULL ");

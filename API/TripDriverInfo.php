@@ -1,5 +1,5 @@
 <?php
-require_once 'include/DB_Function.php';
+require_once '../include/DB_Function.php';
 $db = new DB_Functions();
 
 // json response array
@@ -17,9 +17,9 @@ if(isset($_REQUEST['TripID'])) {
             $i=0;
             $rate =0;
             while (isset($driverRate[$i])){
-                if ($driverRate[$i]['Rate']!=null){
-                    $i++;
+                if (!is_null($driverRate[$i]['Rate'])){
                     $rate+=$driverRate[$i]['Rate'];
+                    $i++;
                 }
             }
             $avgRate=$rate/$i;

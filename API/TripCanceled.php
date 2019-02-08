@@ -1,5 +1,5 @@
 <?php
-require_once 'include/DB_Function.php';
+require_once '../include/DB_Function.php';
 $db=new DB_Functions();
 
 $response = array("error" => FALSE);

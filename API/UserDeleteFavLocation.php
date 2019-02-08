@@ -1,21 +1,23 @@
 <?php
-require_once 'include/DB_Function.php';
+
+require_once '../include/DB_Function.php';
 $db=new DB_Functions();
 
 $response = array("error" => FALSE);
 
-if (isset($_REQUEST['PassengerID'])){
-    $pid=$_REQUEST['PassengerID'];
+if (isset($_REQUEST['FavID'])){
+    $fid=$_REQUEST['FavID'];
 
 
-    $getFav=$db->getFavAddress($pid);
-    if ($getFav){
+    $delFav=$db->deleteFavAddress($fid);
+    if ($delFav){
         $response['error']=FALSE;
-        $response['favLocations']=$getFav;
+        $response['error_msg']="location deleted!";
         echo json_encode($response);
+
     }else{
         $response["error"] = TRUE;
-        $response["error_msg"] = "Unknown error occurred in favorite location setting!";
+        $response["error_msg"] = "Unknown error occurred in delete favorite location setting!";
         echo json_encode($response);
     }
 
