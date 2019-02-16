@@ -29,7 +29,7 @@ if(isset($_REQUEST['TripID']) && isset($_REQUEST['Rate'])){
 
     }else{
         $response["error"] = TRUE;
-        $response["error_msg"] = "Unknown error occurred in registration!";
+        $response["error_msg"] = "Unknown error occurred in rating trip!";
         echo json_encode($response);
     }
 

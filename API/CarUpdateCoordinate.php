@@ -16,7 +16,7 @@ if(isset($_REQUEST['DriverID'])){
 
     }else{
         $response["error"] = TRUE;
-        $response["error_msg"] = "Unknown error occurred in registration!";
+        $response["error_msg"] = "Unknown error occurred in show coordinate of driver!";
         echo json_encode($response);
     }
 

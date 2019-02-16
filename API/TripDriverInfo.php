@@ -26,8 +26,7 @@ if(isset($_REQUEST['TripID'])) {
             $response['AvgRate']=$avgRate;
 
         }else{
-            $response['rateCount']=0;
-            echo json_encode($response);
+            $response['AvgRate']=0;
         }
         $driverInfo=$db->getDriverInfo($did);
         if($driverInfo){
