@@ -17,11 +17,7 @@ if(isset($_REQUEST['TripID'])) {
         $response['EndTime']=$getStaus['EndTime'];
         $response['Price']=$getStaus['Price'];
         $response['Status']=$getStaus['Status'];
-       /* $response['BegLat']=$getStaus['BegLat'];
-        $response['BegLng']=$getStaus['BegLng'];*/
         $response['BegAdr']=$getStaus['BegAdr'];
-        /*$response['DestLat']=$getStaus['DestLat'];
-        $response['DestLng']=$getStaus['DestLng'];*/
         $response['DestAdr']=$getStaus['DestAdr'];
         $response['Rate']=$getStaus['Rate'];
         echo json_encode($response);

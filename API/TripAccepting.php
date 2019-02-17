@@ -16,12 +16,7 @@ if(isset($_REQUEST['TripID']) && isset($_REQUEST['DriverID'])){
         $response['DriverID']=$accept['DriverID'];
         $response['Price']=$accept['Price'];
         $response['Status']=$accept['Status'];
-        /*$response['BegLat']=$accept['BegLat'];
-        $response['BegLng']=$accept['BegLng'];
-        $response['BegAdr']=$accept['BegAdr'];
-        $response['DestLat']=$accept['DestLat'];
-        $response['DestLng']=$accept['DestLng'];
-        $response['DestAdr']=$accept['DestAdr'];*/
+
         echo json_encode($response);
 
     }else{

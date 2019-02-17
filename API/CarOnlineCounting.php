@@ -16,11 +16,9 @@ if(isset($_REQUEST['CarLat']) && isset($_REQUEST['CarLng'])) {
         $response['onCars']=$onlinecars;
         $i=0;
         while (isset($onlinecars[$i])){
-            //$response[$i]=$onlinecars[$i];
             $i++;
         }
         $response['Count']=$i;
-        //$response['cid']=$onlinecars[1]['CarID'];
         echo json_encode($response);
 
     }else{

@@ -21,8 +21,7 @@ if (isset($_REQUEST['Email']) && isset($_REQUEST['Password'])) {
         $response["Name"] = $driver["Name"];
         $response["Phone"] = $driver["Phone"];
         $response["Email"] = $driver["Email"];
-        //$response["Password"] = $driver["Password"];
-        //$response["Verified"] = $driver["Verified"];
+
         echo json_encode($response);
     } else {
         // driver is not found with the credentials

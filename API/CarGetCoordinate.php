@@ -15,7 +15,6 @@ if(isset($_REQUEST['Status']) && isset($_REQUEST['DriverID']) && isset($_REQUEST
 
     if($cngStatus){
         $response["error"] = FALSE;
-        //$response["did"] = $detail["DriverID"];
         $response["Status"] = $cngStatus["Status"];
         $response["CarLat"] = $cngStatus["CarLat"];
         $response["CarLng"] = $cngStatus["CarLng"];

@@ -14,13 +14,7 @@ if(isset($_REQUEST['DriverLat']) && isset($_REQUEST['DriverLng'])) {
         $response['trips'] = $reqTrip;
         $i = 0;
         while (isset($reqTrip[$i])) {
-            //$response[$i]=$showTrips[$i];
-            /*$pid=$reqTrip[$i]['PassengerID'];
-            $pInfo=$db->getUserInfo($pid);
-            $response['name']=$pInfo["Name"];
-            $response['phone']=$pInfo["Phone"];
-            $pName=$reqTrip[$i]['Name'];
-            $pPhone=$reqTrip[$i]['Phone'];*/
+
             $i++;
         }
         $response['count'] = $i;

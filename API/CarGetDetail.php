@@ -12,7 +12,6 @@ if(isset($_REQUEST['DriverID'])){
 
     if($detail){
         $response["error"] = FALSE;
-        //$response["did"] = $detail["DriverID"];
         $response["Model"] = $detail["Model"];
         $response["Color"] = $detail["Color"];
         $response["Plate"] = $detail["Plate"];

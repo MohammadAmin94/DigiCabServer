@@ -279,9 +279,7 @@ LIMIT 0 , 25");
         $stmt->execute();
 
         $row=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        /*=while ($row=$stmt->get_result()->fetch_assoc()){
-            $rows=$row;
-        }*/
+
         $stmt->close();
         return $row;
     }

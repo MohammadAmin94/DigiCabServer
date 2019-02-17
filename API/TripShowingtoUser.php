@@ -22,12 +22,6 @@ if(isset($_REQUEST['PassengerID'])){
 
         while (isset($show2user[$i])) {
 
-            //$did=$show2user[$i]['DriverID'];
-            //$response['trips']=$db->getDriverInfo($did);
-
-
-
-
             if ($show2user[$i]['Status']=="Finished"){
                 $f++;
 

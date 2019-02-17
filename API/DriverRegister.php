@@ -33,7 +33,6 @@ if (isset($_REQUEST['Name']) && isset($_REQUEST['Phone']) && isset($_REQUEST['Em
                 $response["Name"] = $driver["Name"];
                 $response["Phone"] = $driver["Phone"];
                 $response["Email"] = $driver["Email"];
-                //$response["Verified"] = $driver["Verified"];
                 echo json_encode($response);
             } else {
                 // user failed to store

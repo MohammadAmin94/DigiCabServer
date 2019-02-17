@@ -13,7 +13,6 @@ if(isset($_REQUEST['TripID'])) {
         $did=$detect['DriverID'];
         $driverRate=$db->getDriverRate($did);
         if ($driverRate){
-            //$response=$driverRate;
             $i=0;
             $rate =0;
             while (isset($driverRate[$i])){
